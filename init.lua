@@ -219,7 +219,7 @@ require('lazy').setup({
   --    Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
   --
   --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
-  -- { import = 'custom.plugins' },
+{ import = 'custom.plugins' },
 }, {})
 
 -- [[ Setting options ]]
@@ -465,7 +465,16 @@ local servers = {
   -- rust_analyzer = {},
   -- tsserver = {},
   -- html = { filetypes = { 'html', 'twig', 'hbs'} },
-
+  pylsp = {
+    pylsp = {
+        plugins = {
+          pycodestyle = {
+            ignore = {'W391', 'E501'},
+            maxLineLength = 120
+          }
+        }
+    }
+  },  
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -546,6 +555,9 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+-- RGA Keymaps
+vim.keymap.set('n', '<C-b>', '<Cmd>Neotree toggle<CR>')
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
